@@ -1,0 +1,133 @@
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[manager]
+
+prepend_keymap = [
+
+    # Movement: 
+	{ on = [ "j" ],             run = [ "plugin arrow 1" ],                          desc = "Move selection downwards, or wrap." },
+    { on = [ "Down" ],          run = [ "plugin arrow 1" ],                         desc = "Move selection downwardss, or wrap." },
+    { on = [ "<C-j>" ],         run = "arrow 50%",                                                 desc = "Move cursor down half a page." },
+    { on = [ "<PageDown>" ],    run = "arrow 100%",                                                desc = "Move cursor down a page." },
+	{ on = [ "k" ],             run = [ "plugin arrow -1" ],                         desc = "Move selection upwards, or wrap." },
+    { on = [ "<Up>" ],          run = [ "plugin arrow -1" ],                         desc = "Move selection upwards, or wrap." },
+    { on = [ "<C-k>" ],         run = "arrow -50%",                                                desc = "Move cursor up half a page." },
+    { on = [ "<PageUp>" ],      run = "arrow -100%",                                               desc = "Move cursor up a page." },
+	{ on = [ "L" ],             run = [ "plugin smart-enter", "escape --visual --select" ], desc = "Enter the child directory, or open file." },
+	{ on = [ "l" ],             run = "plugin smart-enter detatch",                desc = "Open in new window." },
+    { on = [ "<Right>" ],       run = "plugin smart-enter detatch",                desc = "Open in new window." },
+    { on = [ "<Enter>" ],       run = "plugin smart-enter detatch",                desc = "Open in new window." },
+    { on = [ "g", "g" ],        run = "arrow top",                                          desc = "Move cursor to the top." },
+    { on = [ "G" ],             run = "arrow bot",                                           desc = "Move cursor to the bottom." },
+    { on = [ "<C-u>" ], run = "seek -5" },
+	{ on = [ "<C-e>" ], run = "seek 5" },   
+    # Selection:
+    { on = [ "v" ],     run = "visual_mode",            desc = "Enter visual mode (selection mode)." },
+    { on = [ "V" ],     run = "visual_mode --unset",    desc = "Enter visual mode (unset mode)." },
+    
+    # Operations:
+    { on = [ "y" ],     run = [ "yank", "escape --visual --select" ],                   desc = "Copy the selected files." },
+    { on = [ "Y" ],     run = [ "plugin system-clipboard" ], desc  = "Copy selected files to the clipboard." },
+    { on = [ "x" ],     run = [ "yank --cut", "escape --visual --select" ],             desc = "Cut the selected files." },
+    { on = [ "p" ],     run = "paste",                                                  desc = "Paste files." },
+    { on = [ "P" ],     run = "paste --force",                                          desc = "Paste files, overwrite existing files." },
+    { on = [ "<C-c>" ], run = "create",                                                 desc = "Create a file or directory, append name with / for directories." },
+    { on = [ "d" ],     run = [ "remove", "escape --visual --select" ],                 desc = "Move selected files to trash." },
+    { on = [ "D" ],     run = [ "remove --permanently", "escape --visual --select" ],   desc = "Delete selected files." },
+    { on = [ "s" ],     run = "search fd",                                              desc = "Search files by name using fd." },
+    { on = [ "S" ],     run = "search rg",                                              desc = "Search files by content using ripgrep." },
+    { on = [ "<C-s>" ], run = "search none",                                            desc = "Cancel ongoing search." },
+    { on = [ "z" ],     run = "jump zoxide",                                            desc = "Jump to a directory using zoxide." },
+    { on = [ "Z" ],     run = "jump fzf",                                               desc = "Jump to a directory, or reveal a file using fzf." },
+    { on = [ "$" ],     run = "shell --block --interactive",                                          desc = "Run a shell command and block UI until process finishes." },
+    { on = [ "<C-$>" ], run = "shell --interactive",                                                  desc = "Run a shell command." },
+    { on = [ "-" ],     run = "link",                                                   desc = "Symlink the absolte path of selected files." },
+    { on = [ "_" ],     run = "link --relative",                                        desc = "Symlink the relative path of selected files." },
+    { on = [ "=" ],     run = """
+        shell 'printf "Mode Bits: "; read ans; chmod $ans "$@"' --block --confirm
+    """, desc = "chmod" },
+    { on = [ "b" ],     run = '''shell 'setbg "$@"' --block --confirm''', desc = "Set selected image as background." },
+    { on = [ "E" ],     run = "plugin eza-preview",                                     desc = "Toggle tree/list dir preview" },
+    # Linemode
+    { on = [ "m", "s" ], run = "linemode size",         desc = "Sets linemode to size." },
+    { on = [ "m", "p" ], run = "linemode permissions",  desc = "Sets linemode to permissions." },
+    { on = [ "m", "m" ], run = "linemode mtime",        desc = "Sets linemode to mtime." },
+    { on = [ "m", "n" ], run = "linemode none",         desc = "sets linemode to none." },
+
+    # Copy
+    { on = [ "c", "c" ], run = "copy path",             desc = "Copies absolute file path." },
+    { on = [ "c", "d" ], run = "copy dirname",          desc = "Copies the path of the parent directory." },
+    { on = [ "c", "f" ], run = "copy filename",         desc = "Copies the name of the file." },
+    { on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copies the name of the file without file extension." },
+
+    # Sorting
+    { on = [ ",", "a" ], run = "sort alphabetical --dir_first",             desc = "Sorts files alphabetically." },
+    { on = [ ",", "A" ], run = "sort alphabetically --reverse --dir_first", desc = "Sorts files alphabetically in ascending order." },
+    { on = [ ",", "c" ], run = "sort created --dir_first",                  desc = "Sorts files by creation date." },
+    { on = [ ",", "C" ], run = "sort created --reverse --dir_first",        desc = "Sorts files by creation date in ascending order." },
+    { on = [ ",", "m" ], run = "sort modified --dir_first",                 desc = "Sorts files by last modified date." },
+    { on = [ ",", "M" ], run = "sort modified --reverse --dir_first",       desc = "Sort files by last modified date in ascending order." },
+    { on = [ ",", "n" ], run = "sort natural --dir_first",                  desc = "Sort files in natural order." },
+    { on = [ ",", "N" ], run = "sort natural --reverse --dir_first",        desc = "Sort files in natural order in ascending order." },
+    { on = [ ",", "s" ], run = "sort size --dir_first",                     desc = "Sort files by file size." },
+    { on = [ ",", "S" ], run = "sort size --reverse --dir_first",           desc = "Sort files by file size in ascending order." },
+
+    # Tasks
+    { on = [ "t" ], run = "tasks_show", desc = "Displays the task manager." },
+    
+    # Imagemagick
+    { on = [ "i", "e", "h" ], run = '''shell 'mogrify -normalize -resize 720x -quality 90 "$@" -small.jpg' --confirm --block''', desc = "Horizontal website resize." },
+    { on = [ "i", "e", "v" ], run = '''shell 'mogrify -normalize -resize x800 "$@" -small"$@"' --confirm --block''', desc = "Vertical website resize." },
+    { on = [ "i", "h" ], run = '''shell 'convert +append -resize x2048 "$@" 1.jpg' --confirm --block''', desc = "Horizontal collage." },
+    { on = [ "i", "v" ], run = '''shell 'convert -append -resize 2040x "$@" 1.jpg' --confirm --block''', desc = "Vertical collage." },
+    { on = [ "i", "r", "1" ], run = '''shell 'convert -rotate 90 "$@" -define jpg:lossless=true "$@"' --confirm --block''', desc = "Rotate 90 degrees." },
+    { on = [ "i", "r", "2" ], run = '''shell 'convert -rotate 90 "$@" -define jpg:lossless=true "$@"' --confirm --block''', desc = "Rotate 90 degrees." },
+    { on = [ "i", "r", "3" ], run = '''shell 'convert -rotate 90 "$@" -define jpg:lossless=true "$@"' --confirm --block''', desc = "Rotate 90 degrees." },
+    { on = [ "i", "r", "4" ], run = '''shell 'convert -rotate 90 "$@" -define jpg:lossless=true "$@"' --confirm --block''', desc = "Rotate 90 degrees." },
+
+    # Open directory
+    { on = [ "o", "v" ], run = "mpv $0", desc = "Play directory with mpv." },
+
+    # Downloads
+    { on = [ "w", "w" ], run = '''shell 'wget ' --block --interactive''', desc = "Download file to current directory." },
+    { on = [ "w", "y" ], run = '''shell 'yt ' --block --interactive''', desc = "Download video to current directory." },
+    # Go to [blank]
+    { on = [ "g", "h" ], run = "cd ~",                                      desc = "Go to your home directory." },
+    { on = [ "g", "c" ], run = "cd ~/.config",                              desc = "Go to your config directory." },
+    { on = [ "g", "l" ], run = "cd ~/.local",                               desc = "Go to your local directory." },
+    { on = [ "g", "d" ], run = "cd ~/Documents",                            desc = "Go to your document directory." },
+    { on = [ "g", "D" ], run = "cd ~/Downloads",                            desc = "Go to your download directory." },
+    { on = [ "g", "m" ], run = "cd ~/Music",                                desc = "Go to your music directory." },
+    { on = [ "g", "p" ], run = "cd ~/Pictures",                             desc = "Go to your picture directory." },
+    { on = [ "g", "b" ], run = "cd ~/Pictures/backgrounds",                 desc = "Go to your wallpaper directory." },
+    { on = [ "g", "v" ], run = "cd ~/Video",                                desc = "Go to your video directory." },
+    { on = [ "g", "t" ], run = "cd /tmp",                                   desc = "Go to temporary directory." },
+    { on = [ "g", "c" ], run = "cd ~/Documents/neorg/science/programming",  desc = "Go to your programming directory." },
+    { on = [ "g", "n" ], run = "cd /mnt/",                                  desc = "Go to your mnt directory." },
+    { on = [ "g", "w" ], run = "cd ~/Documents/Websites",                   desc = "Go to website directory." },
+
+    # Help
+    { on = [ "~" ], run = "help", desc = "Open help menu." },
+]
+
+[tasks]
+
+keymap = [
+    # Operations
+    { on = [ "~" ],     run = "help",   desc = "Opens help" },
+    { on = [ "<Esc>" ], run = "close",  desc = "Hide the task manager." },
+    
+    # Navigation
+    { on = [ "k" ],         run = "arrow -1",   desc = "Moves the cursor up." },
+    { on = [ "<Up>" ],      run = "arrow -1",   desc = "Moves the cursor up." },
+    { on = [ "j" ],         run = "arrow 1",    desc = "Moves the cursor down." },
+    { on = [ "<Down>" ],    run = "arrow 1",    desc = "Moves the cursor down." },
+]
+
+[input] 
+
+keymaps = [
+    { on = [ "<C-q>" ],     run = "close",          desc = "Cancels input." },
+    { on = [ "<Enter" ],    run = "close --submit", desc = "Submits input" },
+    { on = [ "<Esc>" ],     run = "escape",         desc = "Go back to normal mode and cancel input." },
+]
