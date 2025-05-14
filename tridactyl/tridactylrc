@@ -1,0 +1,48 @@
+sanitise tridactyllocal tridactylsync
+
+" Tridactyl Settings
+
+set smoothscroll false
+set hintchars hjkl;asdfg
+
+guiset_quiet hoverlink right
+
+
+" Firefox Settings"
+setpref alerts.useSystemBackend true
+
+
+" Bindings
+
+bind yy clipboard yankcanon
+bind yo clipboard yank
+
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,<Space> nohlsearch
+
+bind J scrollline 1
+bind K scrollline -1
+
+bind <C-k> tabprev
+bind <C-j> tabnext
+
+bind v fillcmdline open search !g
+bind V fillcmdline tabopen search !g
+
+bind x fillcmdline tabopen search !stackage
+bind X fillcmdline tabopen search !hackage
+
+" I need to rework this to download files without requiring the download to be the current open page. This is a temporary fix.
+
+bind ;d composite get_current_url | shellescape | exclaim_quiet ~/.config/tridactyl/download_file.sh
+
+
+" AutoCommands
+
+
+autocmd TabEnter .* unfocus
+
+" vim: set ft=tridactyl
