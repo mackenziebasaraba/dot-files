@@ -1,3 +1,3 @@
-# The Studrice
+# Dot Files
 
-Dot files made by studs for studs.
+Configuration files for studs by a stud.
