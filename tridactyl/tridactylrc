@@ -11,6 +11,43 @@ guiset_quiet hoverlink right
 " Firefox Settings"
 setpref alerts.useSystemBackend true
 
+" Search Engines
+set searchurls.anna https://annas-archive.org/search?q=%s
+set searchurls.archwiki https://wiki.archlinux.org/index.php?search=%s
+set searchurls.archpkg https://archlinux.org/packages/?q=%s
+set searchurls.aur https://aur.archlinux.org/packages/?O=0&K=%s
+set searchurls.duckduckgo https://duckduckgo.com/?q=%s
+set searchurls.github https://github.com/search?q=%s
+set searchurls.locsearch https://catalog.loc.gov/vwebv/search?searchArg=%s&searchCode=GKEY%5E*&searchType=0
+set searchurls.manpage https://man7.org/linux/man-pages/dir_all_by_section.html?q=%s
+set searchurls.piratebay https://thepiratebay.org/search.php?q=%s
+set searchurls.stackoverflow https://stackoverflow.com/search?q=%s
+set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search?search=%s
+set searchurls.yandex https://yandex.com/search/?text=%s
+set searchurls.youtube https://www.youtube.com/results?search_query=%s
+set searchurls.oxford https://www.oxfordlearnersdictionaries.com/definition/english/%s
+set searchurls.cambridge https://dictionary.cambridge.org/dictionary/english/%s
+set searchurls.collins https://www.collinsdictionary.com/dictionary/english/%s
+set searchurls.hippo https://www.wordhippo.com/what-is/the-meaning-of/english-word/%s.html
+set searchurls.fourchan https://www.4chan.org/
+
+alias aa open anna
+alias aw open archwiki
+alias ap open archpkg
+alias au open aur
+alias ddg open duckduckgo
+alias gh open github
+alias loc open locsearch
+alias man open manpage
+alias pb open piratebay
+alias so open stackoverflow
+alias ww open wiki
+alias yt open youtube
+alias ox open oxford
+alias cam open cambridge
+alias col open collins
+alias hip open hippo
+alias 4c open fourchan
 
 " Bindings
 
