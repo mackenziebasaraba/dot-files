@@ -21,8 +21,10 @@ set searchurls.github https://github.com/search?q=%s
 set searchurls.locsearch https://catalog.loc.gov/vwebv/search?searchArg=%s&searchCode=GKEY%5E*&searchType=0
 set searchurls.manpage https://man7.org/linux/man-pages/dir_all_by_section.html?q=%s
 set searchurls.piratebay https://thepiratebay.org/search.php?q=%s
+set searchurls.rateyourmusic https://rateyourmusic.com/search?searchterm=
 set searchurls.stackoverflow https://stackoverflow.com/search?q=%s
 set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search?search=%s
+set searchurls.wiby https://wiby.me/?q=
 set searchurls.yandex https://yandex.com/search/?text=%s
 set searchurls.youtube https://www.youtube.com/results?search_query=%s
 set searchurls.oxford https://www.oxfordlearnersdictionaries.com/definition/english/%s
@@ -40,8 +42,10 @@ alias gh open github
 alias loc open locsearch
 alias man open manpage
 alias pb open piratebay
+alias rym open rateyourmusic
 alias so open stackoverflow
 alias ww open wiki
+alias wb open wiby
 alias yt open youtube
 alias ox open oxford
 alias cam open cambridge
